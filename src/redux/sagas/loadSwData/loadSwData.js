@@ -1,6 +1,7 @@
-import {call, fork, put, select, takeEvery} from "redux-saga/effects";
+import {call, take, fork, put, select, takeEvery} from "redux-saga/effects";
 import {getSW} from "../requests/sw";
 import {getUserSW, setPlanetsSw, setUserSW} from "../../ducks/userSlice";
+import {LOCATION_CHANGE} from "connected-react-router";
 
 export function* loadPeople() {
     const people = yield call(getSW, 'people');//sync
@@ -23,6 +24,12 @@ export function* workerSaga() {
 }
 
 export function* watchLoadDataSaga() {
-    yield takeEvery(getUserSW.type, workerSaga);
+    while (true) {
+        const {payload} = yield take(LOCATION_CHANGE);
+        const blogPageReg = /blog$/i
+        if (blogPageReg.test(payload.location.pathname)) {
+            yield fork(workerSaga)
+        }
+    }
 }
 

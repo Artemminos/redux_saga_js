@@ -2,10 +2,13 @@ import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getUser, getUserSW} from "../redux/ducks/userSlice";
 import "../styles.css";
+import {Link} from "react-router-dom";
 
 export default function App() {
     const dispatch = useDispatch();
+    const state = useSelector(state => state)
     const users = useSelector(state => state.user.users.results)
+    console.log(state)
     useEffect(() => {
         dispatch(getUser({test: "hi", id: 1}));
     }, [dispatch]);
@@ -19,16 +22,10 @@ export default function App() {
                 }}
             >test
             </button>
-            {users?.map((item,index)=>{
-                return(
-                    <React.Fragment key={index}>>
-                        <ul >
-                            <li>{item.name}</li>
-                        </ul>
-                        <br/>
-                    </React.Fragment>
-                )
-            })}
+         <div>   <Link to="/blog">
+             to blog
+         </Link></div>
+
         </div>
     );
 }
