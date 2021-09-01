@@ -1,7 +1,23 @@
-import { takeLatest } from "redux-saga/effects";
-import { handleGetUser } from "./handlers/user";
-import { getUser } from "../ducks/userSlice";
+import {spawn, all, call,} from "redux-saga/effects";
 
-export function* watcherSaga() {
-    yield takeLatest(getUser.type, handleGetUser);
+import {loadData} from "./loadUserData/loadUserData";
+import {watchLoadDataSaga} from "./loadSwData/loadSwData";
+
+
+export default function* rootSaga() {
+    const sagas = [watchLoadDataSaga, loadData]
+
+    const retrySagas = yield sagas.map(saga => {
+        return spawn(function* () {
+            while (true) {
+                try {
+                    yield call(saga);
+                    break;
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+        })
+    });
+    yield all(retrySagas);
 }
