@@ -5,6 +5,7 @@ import {
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./sagas/rootSaga";
 import userReducer from "./ducks/userSlice";
+import postSlice from "./ducks/posts/postsSlice";
 import logger from 'redux-logger'
 import {connectRouter} from "connected-react-router";
 import {createBrowserHistory} from "history";
@@ -16,6 +17,7 @@ export const history = createBrowserHistory()
 const reducer = combineReducers({
     router: connectRouter(history),
     user: userReducer,
+    post: postSlice,
 
 });
 

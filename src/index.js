@@ -10,6 +10,7 @@ import Blog from "./pages/Blog";
 import {history} from './redux/configureStore'
 
 ReactDOM.render(
+
     <Provider store={store}>
         <ConnectedRouter history={history}>
             <Switch>
@@ -24,7 +25,6 @@ ReactDOM.render(
                 </Route>
             </Switch>
         </ConnectedRouter>
-    </Provider>
- ,
+    </Provider>,
   document.getElementById('root')
 );
