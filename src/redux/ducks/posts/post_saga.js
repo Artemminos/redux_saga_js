@@ -1,8 +1,9 @@
-import {all, put, call, fork, take, takeLatest} from "redux-saga/effects";
+import {all, put, call, fork, take, takeEvery} from "redux-saga/effects";
 import {LOCATION_CHANGE} from "connected-react-router";
 import {getPosts} from "../../../api/posts";
-import {editPost, removePost, addPost, setPosts} from "../../ducks/posts/postsSlice";
-import {ADD_POST, EDIT_POST, REMOVE_POST} from "../../ducks/posts/action_creators";
+import {editPost, removePost, addPost, setPosts} from "./postsSlice";
+import {ADD_POST, EDIT_POST, REMOVE_POST} from "./contracts/action_types";
+
 
 function* loadPosts() {
     const request = yield call(getPosts)
@@ -24,7 +25,7 @@ function* editPostSaga({payload}) {
     yield put({type: editPost.type, payload});
 }
 
-export function* posts() {
+export function* post_saga() {
     while (true) {
         const {payload} = yield take(LOCATION_CHANGE);
         const mainPageReg = /blog$/i
@@ -32,9 +33,9 @@ export function* posts() {
             yield fork(loadPosts)
         }
         yield all([
-            takeLatest(REMOVE_POST, deletePost),
-            takeLatest(ADD_POST, addPostSaga),
-            takeLatest(EDIT_POST, editPostSaga),
+            takeEvery(REMOVE_POST, deletePost),
+            takeEvery(ADD_POST, addPostSaga),
+            takeEvery(EDIT_POST, editPostSaga),
         ])
     }
 

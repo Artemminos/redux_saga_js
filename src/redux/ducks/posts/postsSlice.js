@@ -1,8 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {initState} from "./contracts/state";
 
-const initState = {
-    posts: null,
-}
+
 
 const postsSlice = createSlice({
     name: "posts",

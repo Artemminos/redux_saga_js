@@ -3,7 +3,7 @@ import {
     combineReducers,
 } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
-import rootSaga from "./sagas/rootSaga";
+import rootSaga from "./rootSaga";
 import userReducer from "./ducks/userSlice";
 import postSlice from "./ducks/posts/postsSlice";
 import logger from 'redux-logger'

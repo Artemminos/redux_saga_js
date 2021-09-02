@@ -1,0 +1,15 @@
+
+{
+  "settings": {
+    "import/resolver": {
+      "compilerOptions": {
+        "baseUrl": "./src",
+        "paths": {
+          "*": ["src/*"]
+        }
+
+      }
+    }
+  }
+}
+

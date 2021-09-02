@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {add_post, edit_post, remove_post} from "../redux/ducks/posts/action_creators";
-import PostItem from "../components/postItem";
+import {add_post, edit_post, remove_post} from "redux/ducks/posts/action_creators";
+import PostItem from "components/postItem";
 
 const Blog = () => {
     const dispatch = useDispatch();
