@@ -1,6 +1,6 @@
 import {all, put, call, fork, take, takeEvery} from "redux-saga/effects";
 import {LOCATION_CHANGE} from "connected-react-router";
-import {getPosts} from "../../../api/posts";
+import {getPosts} from "api/posts";
 import {editPost, removePost, addPost, setPosts} from "./postsSlice";
 import {ADD_POST, EDIT_POST, REMOVE_POST} from "./contracts/action_types";
 

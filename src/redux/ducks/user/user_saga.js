@@ -18,7 +18,7 @@ function* loadUser() {
 }
 
 export function* user_saga() {
-    yield all([
-        call(loadUser)
-    ])
+        yield all([
+            fork(loadUser)
+        ])
 }
