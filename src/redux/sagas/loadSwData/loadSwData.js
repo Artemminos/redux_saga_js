@@ -1,17 +1,17 @@
 import {call, take, fork, put, select, takeEvery} from "redux-saga/effects";
-import {getSW} from "../requests/sw";
-import {getUserSW, setPlanetsSw, setUserSW} from "../../ducks/userSlice";
+import {getSW} from "../../../api/sw";
+import {setMembers,setPlanets} from "../../ducks/star_wars_slice";
 import {LOCATION_CHANGE} from "connected-react-router";
 
 export function* loadPeople() {
     const people = yield call(getSW, 'people');//sync
-    yield put({type: setUserSW.type, payload: people})//sync
+    yield put({type: setMembers.type, payload: people})//sync
     return people
 }
 
 export function* loadPlaners() {
     const planets = yield call(getSW, 'planets');//sync
-    yield put({type: setPlanetsSw.type, payload: planets})//sync
+    yield put({type: setPlanets.type, payload: planets})//sync
 
 }
 

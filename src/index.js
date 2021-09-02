@@ -10,7 +10,6 @@ import Blog from "./pages/Blog";
 import {history} from './redux/configureStore'
 
 ReactDOM.render(
-  <React.StrictMode>
     <Provider store={store}>
         <ConnectedRouter history={history}>
             <Switch>
@@ -26,6 +25,6 @@ ReactDOM.render(
             </Switch>
         </ConnectedRouter>
     </Provider>
-  </React.StrictMode>,
+ ,
   document.getElementById('root')
 );
