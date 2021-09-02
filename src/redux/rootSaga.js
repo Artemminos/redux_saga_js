@@ -1,12 +1,12 @@
 import {spawn, all, call,} from "redux-saga/effects";
 
-import {loadData} from "./sagas/loadUserData/loadUserData";
 import {watchLoadDataSaga} from "./sagas/loadSwData/loadSwData";
 import {post_saga} from "./ducks/posts/post_saga";
+import {user_saga} from "./ducks/user/user_saga";
 
 
 export default function* rootSaga() {
-    const sagas = [watchLoadDataSaga, loadData,post_saga]
+    const sagas = [watchLoadDataSaga,user_saga, post_saga]
 
     const retrySagas = yield sagas.map(saga => {
         return spawn(function* () {

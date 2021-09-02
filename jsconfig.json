@@ -2,11 +2,14 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "*": ["src/*"]
-    },
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"]
-  },
-  "include": [ "**/*.js", "**/*.jsx","*/.jsx","src","*"],
-  "exclude": ["node_modules"]
+      "api/*": ["api/*"],
+      "components/*": ["components/*"],
+      "pages/*": ["pages/*"],
+      "redux/*": ["redux/*"],
+      "*": [
+        "src/*"
+      ]
+    }
+  }
+
 }

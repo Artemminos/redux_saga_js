@@ -1,31 +1,24 @@
-import {all,put, call, fork, take} from "redux-saga/effects";
-import {LOCATION_CHANGE} from "connected-react-router";
-import {getUser} from "src/api/user";
+import {all, put, call, fork, takeEvery, select} from "redux-saga/effects";
+import {setUser} from "./user_slice";
+import {getUser} from "api/user";
 
-function* auth({payload}) {
-    const {page, search} = payload;
-    const request = yield call(getUser, page, search)
-    console.log(request)
+function* auth() {
+    const request = yield call(getUser)
     yield put({
         type: setUser.type,
         payload: request
     })
 }
 
-function* loadUsers() {
-    yield call(loadPeople)
+function* loadUser() {
+    const store = yield select(s => s);
+    if (store.user.user === null) {
+        yield call(auth)
+    }
 }
 
-export function* loadData() {
-    while (true) {
-        const {payload} = yield take(LOCATION_CHANGE);
-        const mainPageReg = /\/$/i
-        if (mainPageReg.test(payload.location.pathname)) {
-            yield all([
-                fork(auth),
-                fork(loadUsers)
-            ])
-        }
-    }
-
+export function* user_saga() {
+    yield all([
+        call(loadUser)
+    ])
 }

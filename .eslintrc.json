@@ -5,7 +5,13 @@
       "compilerOptions": {
         "baseUrl": "./src",
         "paths": {
-          "*": ["src/*"]
+          "api/*": ["api/*"],
+          "components/*": ["components/*"],
+          "pages/*": ["pages/*"],
+          "redux/*": ["redux/*"],
+          "*": [
+            "src/*"
+          ]
         }
 
       }

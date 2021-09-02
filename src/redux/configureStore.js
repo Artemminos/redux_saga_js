@@ -4,8 +4,8 @@ import {
 } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./rootSaga";
-import userReducer from "./ducks/userSlice";
 import postSlice from "./ducks/posts/postsSlice";
+import userReducer from './ducks/user/user_slice'
 import logger from 'redux-logger'
 import {connectRouter} from "connected-react-router";
 import {createBrowserHistory} from "history";
